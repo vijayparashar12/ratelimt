@@ -2,7 +2,7 @@
 
 This is a spring boot application.
 
-To Run the server   
+For running the demo   
 
 <b>mvn spring-boot:run</b>
 
