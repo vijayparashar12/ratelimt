@@ -11,6 +11,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.vp.data.exception.InvalidParameterException;
+
 /**
  * @author vijay
  * This Class parses the hotelDB.csv and keep and in memory index of hotels.
@@ -67,7 +69,10 @@ public class HotelDB {
         log.info(cityHotelIndex);
     }
 
-    public List<Hotel> getCityHotels(String city) {
+    public List<Hotel> getCityHotels(String city) throws InvalidParameterException {
+    	if(city ==null){
+    		throw new InvalidParameterException();
+    	}
         String key = city.replaceAll(WHITE_SPACES, "").toLowerCase();
         return cityHotelIndex.get(key);
     }

@@ -61,7 +61,11 @@ public class SearchWebService {
 			searchCriteria.setCity(city);
 			searchCriteria.setSort(sort);
 			List<Hotel> hotels = searchService.search(searchCriteria);
-			response.put("hotels", hotels);
+			if (hotels != null) {
+				response.put("hotels", hotels);
+			} else {
+				response.put("error", "No Such City in Database");
+			}
 		} else {
 			response.put("error", permission.getApiStatus().name());
 		}

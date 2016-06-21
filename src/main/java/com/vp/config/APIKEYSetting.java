@@ -22,14 +22,15 @@ import com.vp.ratelimit.RateLimmiter;
  * rateLimemmire object for individual apikey. 
  */
 public class APIKEYSetting {
-    private static final String WINDOW_SIZE_SUFFIX = ".window.sec";
+    public static final int SUSPENSION_PERIOD = 60 * 5 * 1000;
+	private static final String WINDOW_SIZE_SUFFIX = ".window.sec";
     private static final String REQUEST_THRESHOLD_SUFFIX = ".request.threshold";
     private static final int FALLBACK_WINDOW_SIZE = 10;
     private static final int FALLBACK_REQUEST_THRESHOLD = 1;
     
     private Map<String, List<Settings>> settings;
     private Map<String, RateLimmiter> apiKeyRateLimmiter;
-    private Map<String, Long> suspededKeys;
+    private Map<String, Long> suspendedKeys;
     private APIKEYStore apikeyStore;
     
     private static final Log log = LogFactory.getLog(APIKEYSetting.class);
@@ -37,7 +38,7 @@ public class APIKEYSetting {
     public APIKEYSetting() {
         settings = new HashMap<String, List<Settings>>();
         apiKeyRateLimmiter = new HashMap<String, RateLimmiter>();
-        suspededKeys = new HashMap<String, Long>();
+        suspendedKeys = new HashMap<String, Long>();
     }
 
     public void init() {
@@ -130,17 +131,17 @@ public class APIKEYSetting {
     }
 
     private void suspendKey(String apiKey) {
-        long fiveMinutes = System.currentTimeMillis() + 60 * 5 * 1000;
-        suspededKeys.put(apiKey, fiveMinutes);
+        long fiveMinutes = System.currentTimeMillis() + SUSPENSION_PERIOD;
+        suspendedKeys.put(apiKey, fiveMinutes);
     }
 
     public boolean isKeyInSuspenstion(String apiKey) {
         boolean suspended = false;
-        if (suspededKeys.containsKey(apiKey)) {
-            if (System.currentTimeMillis() < suspededKeys.get(apiKey)) {
+        if (suspendedKeys.containsKey(apiKey)) {
+            if (System.currentTimeMillis() < suspendedKeys.get(apiKey)) {
                 suspended = true;
             } else {
-                suspededKeys.remove(apiKey);
+                suspendedKeys.remove(apiKey);
             }
         }
         return suspended;
