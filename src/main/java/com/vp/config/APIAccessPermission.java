@@ -2,6 +2,10 @@ package com.vp.config;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * @author vijay
+ * Bean that stores api access permissions for each request.
+ */
 public class APIAccessPermission {
     public enum APIStatus {
         INVALID_KEY(HttpStatus.BAD_REQUEST), ACTIVE(HttpStatus.OK), SUSPEDED(HttpStatus.TOO_MANY_REQUESTS);

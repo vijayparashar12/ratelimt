@@ -16,15 +16,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.vp.config.APIAccessPermission.APIStatus;
 import com.vp.ratelimit.RateLimmiter;
 
+/**
+ * @author vijay
+ * This class reads the apikeys.properties file and keeps a in memory copy of setting and
+ * rateLimemmire object for individual apikey. 
+ */
 public class APIKEYSetting {
     private static final String WINDOW_SIZE_SUFFIX = ".window.sec";
     private static final String REQUEST_THRESHOLD_SUFFIX = ".request.threshold";
     private static final int FALLBACK_WINDOW_SIZE = 10;
     private static final int FALLBACK_REQUEST_THRESHOLD = 1;
+    
     private Map<String, List<Settings>> settings;
     private Map<String, RateLimmiter> apiKeyRateLimmiter;
     private Map<String, Long> suspededKeys;
     private APIKEYStore apikeyStore;
+    
     private static final Log log = LogFactory.getLog(APIKEYSetting.class);
 
     public APIKEYSetting() {

@@ -11,6 +11,11 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * @author vijay
+ * This Class parses the hotelDB.csv and keep and in memory index of hotels.
+ * indexing is done considering two api request i.e individual hotel id request and city based request. 
+ */
 public class HotelDB {
     public static final String WHITE_SPACES = "\\s+";
     private static final Log log = LogFactory.getLog(HotelDB.class);

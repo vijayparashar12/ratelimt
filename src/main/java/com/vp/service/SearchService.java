@@ -9,6 +9,11 @@ import com.vp.data.HotelDB;
 import com.vp.data.SearchCriteria;
 import com.vp.data.SearchCriteria.Sort;
 
+/**
+ * @author vijay
+ *	This is a service implementation, this class query in memory hotelDB for give city, 
+ *	it also sort the result in given sort option.
+ */
 @Service
 public class SearchService {
     private HotelDB hotelDB;

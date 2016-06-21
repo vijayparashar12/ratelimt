@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 import com.vp.service.SearchService;
 
+/**
+ * @author vijay
+ * Spring bean configurations.
+ */
 @Configuration
 public class BeanConfig {
 

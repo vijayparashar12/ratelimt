@@ -4,6 +4,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.vp.config.RateLimtSettings;
 
+/**
+ * @author vijay
+ *	This implementation of Ratelimmiter in done using atomic counter and synchronized block,
+ *  every time access method is called counter is incremented and compared with given threshold.
+ *  if window has expired it will recreate the window and then check the rate limit process.
+ */
 public final class RateLimmiter {
     private AtomicInteger counter;
     private final int threshold;

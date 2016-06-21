@@ -1,5 +1,9 @@
 package com.vp.config;
 
+/**
+ * @author vijay
+ * Bean class for rate limit setting.
+ */
 public class RateLimtSettings implements Settings {
     private int window;
     private int threshold;

@@ -9,6 +9,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * @author vijay
+ *	This class reads apikeys.store file, and keep an in memory list of all active api keys.
+ */
 public class APIKEYStore {
 
     private static final Log log = LogFactory.getLog(APIKEYStore.class);
